@@ -1,0 +1,6 @@
+/workspaces/SpringBoot/1-springboot-mvc/src/main/java/com/sergio/springboot/springmvc/app/Application.java
+/workspaces/SpringBoot/1-springboot-mvc/src/main/java/com/sergio/springboot/springmvc/app/controllers/UserController.java
+/workspaces/SpringBoot/1-springboot-mvc/src/main/java/com/sergio/springboot/springmvc/app/entities/User.java
+/workspaces/SpringBoot/1-springboot-mvc/src/main/java/com/sergio/springboot/springmvc/app/repositories/UserRepository.java
+/workspaces/SpringBoot/1-springboot-mvc/src/main/java/com/sergio/springboot/springmvc/app/services/UserService.java
+/workspaces/SpringBoot/1-springboot-mvc/src/main/java/com/sergio/springboot/springmvc/app/services/UserServiceImpl.java
