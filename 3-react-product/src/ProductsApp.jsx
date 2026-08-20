@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
 import { ProductTable } from "./componentes/ProductTable"
+import { ProductForm } from "./componentes/ProductForm"
 import { useEffect, useState } from "react"
 
 const initProducts = [{
@@ -24,11 +25,20 @@ export const ProductsApp = ({title}) => {
     console.log('cargando la página ...')
   }, [])
 
+  const handlerAddProduct = (product) => {
+    setProducts([...products, {...product, id: Date.now()}])
+  }
+
   return <div className='container my-4' >
     <h2>{title}</h2>
     <div className="row">
       <div className="col">
+          <div className="col">
+            <ProductForm  handlerAdd={handlerAddProduct}/>
+          </div>
+          <div className="col">
           <ProductTable products={products} />
+          </div>
       </div>
     </div>
   </div>
