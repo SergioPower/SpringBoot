@@ -1,0 +1,22 @@
+{
+  "java.project.workspaceName": "springboot-backend",
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.import.gradle.enabled": false,
+  "java.import.maven.enabled": true,
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.autobuild.enabled": true,
+  "java.project.resourceFilters": [
+    "node_modules",
+    "target"
+  ],
+  "editor.suggest.showKeywords": true,
+  "editor.suggest.showMethods": true,
+  "editor.suggest.showFunctions": true,
+  "editor.suggest.showClasses": true,
+  "editor.suggest.showInterfaces": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  }
+}
