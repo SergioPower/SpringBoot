@@ -1,1 +1,6 @@
 /workspaces/SpringBoot/2-springboot-backend/src/main/java/com/sergio/curso/java/springboot/backend/Application.java
+/workspaces/SpringBoot/2-springboot-backend/src/main/java/com/sergio/curso/java/springboot/backend/controllers/ProductController.java
+/workspaces/SpringBoot/2-springboot-backend/src/main/java/com/sergio/curso/java/springboot/backend/entities/Product.java
+/workspaces/SpringBoot/2-springboot-backend/src/main/java/com/sergio/curso/java/springboot/backend/repositories/ProductRepository.java
+/workspaces/SpringBoot/2-springboot-backend/src/main/java/com/sergio/curso/java/springboot/backend/services/ProductService.java
+/workspaces/SpringBoot/2-springboot-backend/src/main/java/com/sergio/curso/java/springboot/backend/services/ProductServiceImpl.java
