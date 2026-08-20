@@ -6,17 +6,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.sergio.springboot.springmvc.app.entities.User;
 import com.sergio.springboot.springmvc.app.services.UserService;
 
-import org.springframework.ui.Model;
+import jakarta.validation.Valid;
 
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/users")
+@SessionAttributes({"user"})
 public class UserController {
 
     private final UserService service;
@@ -33,7 +38,7 @@ public class UserController {
         return "view";
     }
 
-    @GetMapping
+    @GetMapping({"/", ""})
     public String list(Model model) {
         model.addAttribute("title", "Listado de usuarios");
         model.addAttribute("users", service.findAll());
@@ -51,7 +56,7 @@ public class UserController {
     public String form(@PathVariable Long id, Model model, RedirectAttributes redirect) {
         Optional<User> optionalUser = service.findById(id);
         if (optionalUser.isPresent()) {
-            model.addAttribute("users", optionalUser.get());
+            model.addAttribute("user", optionalUser.get());
             model.addAttribute("title", "Crear Usuario");
             return "form";
         } else {
@@ -61,15 +66,19 @@ public class UserController {
     }
 
     @PostMapping
-    public String form(User user, Model model, RedirectAttributes redirect) {
-
+    public String form(@Valid User user, BindingResult result , Model model, RedirectAttributes redirect, SessionStatus status) {
+        if (result.hasErrors()) {
+            model.addAttribute("title", "Validando Formulario");
+            return "form";
+        }
         String message = (user.getId() != null && user.getId() > 0) ? 
         "El usuario " + user.getName() + " se ha actualizado con exito!" : 
         "El usuario " + user.getName() + " se ha creado con exito!"; ;
        
         service.save(user);
+        status.setComplete();
         redirect.addFlashAttribute("success", message);
-        return "redirect:/users";
+        return "redirect:/users/";
     }
 
     @GetMapping("/delete/{id}")
