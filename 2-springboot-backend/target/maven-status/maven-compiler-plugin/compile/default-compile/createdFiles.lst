@@ -1,1 +1,6 @@
+com/sergio/curso/java/springboot/backend/repositories/ProductRepository.class
+com/sergio/curso/java/springboot/backend/entities/Product.class
 com/sergio/curso/java/springboot/backend/Application.class
+com/sergio/curso/java/springboot/backend/services/ProductService.class
+com/sergio/curso/java/springboot/backend/controllers/ProductController.class
+com/sergio/curso/java/springboot/backend/services/ProductServiceImpl.class
