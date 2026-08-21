@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../models/product';
 import { FormsModule } from '@angular/forms';
 
@@ -8,14 +8,12 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './form.html',
 })
 export class Form {
-
-  product: Product = {
+  @Input() product: Product = {
     id: 0,
     name: '',
     description: '',
     price: 0
   }
-
 
   @Output() addProductEvent = new EventEmitter();
   onSubmit(): void {

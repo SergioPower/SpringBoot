@@ -9,6 +9,9 @@
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Precio</th>
+                <th>Update</th>
+                <th>Remove</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -18,7 +21,10 @@
                     <td>{{product.name}}</td>
                     <td>{{product.description}}</td>
                     <td>{{product.price}}</td>
-                </tr>
+                    <td><button class="btn btn-sm btn-primary" 
+                        (click)="onUpdateProduct(product)" >Update</button></td>
+                    <td><button class="btn btn-sm btn-danger"
+                        (click)="onRemoveProduct(product.id)" >Remove</button></td>
             }
         </tbody>
     </table>

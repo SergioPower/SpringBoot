@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { Products } from './components/products';
 import { Product } from './models/product';
 import { Form } from './components/form';
+import Swal from 'sweetalert2';
 
 @Component({
   imports: [Products, Form],
@@ -11,8 +12,14 @@ import { Form } from './components/form';
 })
 export class App  implements OnInit{
   products: Product[] = [];
-
   countId = signal(3)
+  productSelected: Product = {
+    id: 0,
+    name: '',
+    description: '',
+    price: 0
+  }
+
 
   ngOnInit(): void {
     this.products = [
@@ -33,8 +40,53 @@ export class App  implements OnInit{
 
 
   addProduct(product: Product): void {
-    this.products = [... this.products, { ...product, id: this.countId()}]
-    this.countId.update(id => id + 1)
+    if (product.id > 0) {
+      this.products = this.products.map(p => {
+        if (p.id == product.id){
+          return {...product}
+        } 
+        return p
+      })
+      Swal.fire({
+        title: "Producto actualizado con exito!",
+        text: "Producto actualizado!",
+        icon: "success"
+      });
+    } else {
+      this.products = [... this.products, { ...product, id: this.countId()}]
+      this.countId.update(id => id + 1)
+      Swal.fire({
+        title: "Producto creado!",
+        text: "Producto creado con exito!",
+        icon: "success"
+      });
+    }
+  }
+
+  onUpdateProductEvent(product: Product): void {
+    this.productSelected = {...product}
+  }
+
+  onRemoveProductEvent(id: number): void {
+    Swal.fire({
+      title: "Estas seguro de eliminar?",
+      text: "No podrás revertir esto!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si",
+      cancelButtonText: "Cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.products = this.products.filter(product => product.id != id)
+        Swal.fire({
+            title: "Producto eliminado!",
+            text: "Producto eliminado con exito!",
+            icon: "success"
+          });
+      }
+    });
   }
 
 }
