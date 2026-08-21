@@ -13,8 +13,9 @@ const initProducts = [{
   name: 'Iphone 16 pro',
   description: "El telefono es excelente e incluye Apple Intelligence!",
   price: 45000
-},
-]
+},]
+
+
 
 export const ProductsApp = ({ title }) => {
 
