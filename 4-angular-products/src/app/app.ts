@@ -1,16 +1,19 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Products } from './components/products';
 import { Product } from './models/product';
+import { Form } from './components/form';
 
 @Component({
-  imports: [Products],
+  imports: [Products, Form],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App  implements OnInit{
   products: Product[] = [];
-  
+
+  countId = signal(3)
+
   ngOnInit(): void {
     this.products = [
       {
@@ -27,4 +30,11 @@ export class App  implements OnInit{
       },
     ]
   }
+
+
+  addProduct(product: Product): void {
+    this.products = [... this.products, { ...product, id: this.countId()}]
+    this.countId.update(id => id + 1)
+  }
+
 }

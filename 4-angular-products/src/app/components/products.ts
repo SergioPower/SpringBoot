@@ -10,5 +10,5 @@ import { Product } from '../models/product';
 export class Products {
 
   @Input() products: Product[] = [];
-  title = "listado de productos";
+  title = "Listado de productos";
 }
