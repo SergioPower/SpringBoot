@@ -8,7 +8,7 @@ const initProducts = [{
   name: 'Monitor Asus 37 pulgadas',
   description: "El monitor es perfecto para juegos",
   price: 1000
-},{
+}, {
   id: 2,
   name: 'Iphone 16 pro',
   description: "El telefono es excelente e incluye Apple Intelligence!",
@@ -16,9 +16,15 @@ const initProducts = [{
 },
 ]
 
-export const ProductsApp = ({title}) => {
+export const ProductsApp = ({ title }) => {
 
   const [products, setProducts] = useState([])
+  const [productSelected, setproductSelected] = useState({
+    id: 0,
+    name: '',
+    description: '',
+    price: ''
+  })
 
   useEffect(() => {
     setProducts(initProducts);
@@ -26,20 +32,49 @@ export const ProductsApp = ({title}) => {
   }, [])
 
   const handlerAddProduct = (product) => {
-    setProducts([...products, {...product, id: Date.now()}])
+    if (product.id > 0) {
+      setProducts(
+        products.map(p => {
+          if (p.id === product.id) {
+            return { ...product }
+          }
+          return p
+        })
+      )
+    } else {
+      setProducts([...products, { ...product, id: Date.now() }])
+    }
+  }
+
+  const handlerProductSelected = (product) => {
+    setproductSelected({ ...product })
+    console.log(productSelected)
+  }
+
+  const handlerRemoveProduct = (id) => {
+    setProducts(products.filter(p => p.id !== id))
   }
 
   return <div className='container my-4' >
     <h2>{title}</h2>
     <div className="row">
+
       <div className="col">
-          <div className="col">
-            <ProductForm  handlerAdd={handlerAddProduct}/>
-          </div>
-          <div className="col">
-          <ProductTable products={products} />
-          </div>
+        <ProductForm handlerAdd={handlerAddProduct} productSelected={productSelected} />
       </div>
+      <div className="col">
+        {
+          products.length > 0 ?
+            <ProductTable products={products} handlerProductSelected={handlerProductSelected} 
+            handlerRemoveProduct={handlerRemoveProduct} 
+            />
+            :
+            <div className="alert alert-warning" role="alert">
+              No hay productos para mostrar
+            </div>
+        }
+      </div>
+
     </div>
   </div>
 }

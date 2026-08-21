@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 
-export const ProductTable = ({products}) => {
+export const ProductTable = ({products, handlerProductSelected, handlerRemoveProduct}) => {
     return <table  className="table table-hover table-striped">
         <thead>
             <tr>
@@ -8,6 +8,8 @@ export const ProductTable = ({products}) => {
                 <th>name</th>
                 <th>description</th>
                 <th>price</th>
+                <th>update</th>
+                <th>remove</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +21,12 @@ export const ProductTable = ({products}) => {
                             <td>{product.name}</td>
                             <td>{product.description}</td>
                             <td>{product.price}</td>
+                            <td><button className="btn btn-sm btn-success" onClick={() => handlerProductSelected(product) }>
+                                Update
+                            </button></td>
+                            <td><button className="btn btn-sm btn-danger" onClick={() => handlerRemoveProduct(product.id)}>
+                                Remove
+                            </button></td>
                         </tr>
                     )
                 })
@@ -30,5 +38,7 @@ export const ProductTable = ({products}) => {
 }
 
 ProductTable.propTypes = {
-    products: PropTypes.array.isRequired
+    products: PropTypes.array.isRequired,
+    handlerProductSelected: PropTypes.func.isRequired,
+    handlerRemoveProduct: PropTypes.func.isRequired
 }
