@@ -1,8 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://symmetrical-space-spoon-6qjvx767597259gw-8080.app.github.dev/";
-
-
+const baseUrl = "/api/products";
 
 export const findAll = async() => {
     try {
@@ -27,7 +25,7 @@ export const create = async({name, description, price}) => {
 }
 export const update = async({id, name, description, price}) => {
     try {
-        return await axios.put(`${baseUrl}${id}`, {
+        return await axios.put(`${baseUrl}/${id}`, {
             name,
             description,
             price
@@ -39,7 +37,7 @@ export const update = async({id, name, description, price}) => {
 }
 export const remove = async(id) => {
     try {
-        await axios.delete(`${baseUrl}${id}`);
+        await axios.delete(`${baseUrl}/${id}`);
     } catch(error) {
         console.log(error);
     }
