@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Products } from './components/products';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [Products],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('4-angular-products');
+  protected readonly title = '4-angular-products';
 }
