@@ -14,7 +14,23 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/products") 
-@CrossOrigin(origins = { "http://localhost:5173" })
+@CrossOrigin(
+    origins = {
+        "http://localhost:4200",
+        "http://localhost:5173",
+        "https://*.github.dev",
+        "https://*.pages.dev",
+        "https://*.app.github.dev",
+        "http://*.github.dev",
+        "http://*.pages.dev",
+        "http://*.app.github.dev"
+    },
+    allowedHeaders = "*",
+    methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS},
+    allowCredentials = "true",
+    maxAge = 3600
+)
+
 public class ProductController {
 
     final private ProductService service;

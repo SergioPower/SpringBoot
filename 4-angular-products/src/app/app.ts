@@ -3,6 +3,7 @@ import { Products } from './components/products';
 import { Product } from './models/product';
 import { Form } from './components/form';
 import Swal from 'sweetalert2';
+import { ProductService } from './services/productService';
 
 @Component({
   imports: [Products, Form],
@@ -11,6 +12,7 @@ import Swal from 'sweetalert2';
   templateUrl: './app.html',
 })
 export class App  implements OnInit{
+  
   products: Product[] = [];
   countId = signal(3)
   productSelected: Product = {
@@ -21,8 +23,13 @@ export class App  implements OnInit{
   }
 
 
+  constructor(private service: ProductService) {}
+
   ngOnInit(): void {
-    this.products = [
+
+  this.service.findAll().subscribe(products => this.products = products)
+
+    /*this.products = [
       {
         id: 1,
         name: 'Monitor Asus 35 pulgadas',
@@ -34,19 +41,18 @@ export class App  implements OnInit{
         name: 'Iphone 16 pro',
         description: 'El Iphone 16 pro es perfecto para usuarios que buscan lo último en tecnología!',
         price: 45000
-      },
-    ]
+      },]*/
   }
-
+ 
 
   addProduct(product: Product): void {
     if (product.id > 0) {
       this.products = this.products.map(p => {
         if (p.id == product.id){
-          return {...product}
+          return {...product};
         } 
-        return p
-      })
+        return p;
+      });
       Swal.fire({
         title: "Producto actualizado con exito!",
         text: "Producto actualizado!",
