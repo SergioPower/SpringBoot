@@ -2,3 +2,4 @@ facturation/target/
 target/
 **/.env
 .vscode
+*.sh
