@@ -30,9 +30,9 @@ public class Cliente {
 
     private String email;
 
-    @Column(name = "created_at")
+    @Column(name = "create_at")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createdAt;
+    private LocalDate createAt;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Factura> facturas;
@@ -41,7 +41,7 @@ public class Cliente {
 
     @PrePersist
     public void prePersist() {
-        this.createdAt = LocalDate.now();
+        this.createAt = LocalDate.now();
     }
 
     public Cliente() {
@@ -88,12 +88,12 @@ public class Cliente {
         this.email = email;
     }
 
-    public LocalDate getCreatedAt() {
-        return createdAt;
+    public LocalDate getCreateAt() {
+        return createAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
+    public void setCreateAt(LocalDate createAt) {
+        this.createAt = createAt;
     }
 
     public List<Factura> getFacturas() {

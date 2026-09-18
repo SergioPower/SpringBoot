@@ -23,12 +23,12 @@ public class Producto {
 
     private Double precio;
 
-    @Column (name = "created_at")
-    private LocalDate createdAt;
+    @Column (name = "create_at")
+    private LocalDate createAt;
 
     @PrePersist 
     public void prePersist() {
-        this.createdAt = LocalDate.now();
+        this.createAt = LocalDate.now();
     }
 
     public String getNombre() {
@@ -47,12 +47,12 @@ public class Producto {
         this.precio = precio;
     }
 
-    public LocalDate getCreatedAt() {
-        return createdAt;
+    public LocalDate getCreateAt() {
+        return createAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
+    public void setCreateAt(LocalDate createAt) {
+        this.createAt = createAt;
     }
 
     public Long getId() {

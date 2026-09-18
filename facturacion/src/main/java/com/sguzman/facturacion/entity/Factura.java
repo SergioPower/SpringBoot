@@ -38,9 +38,9 @@ public class Factura {
     @JoinColumn(name = "factura_id")
     private List<ItemFactura> items;
 
-    @Column(name = "created_at")
+    @Column(name = "create_at")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createdAt;
+    private LocalDate createAt;
 
     public Factura() {
         this.items = new ArrayList<>();
@@ -48,7 +48,7 @@ public class Factura {
 
     @PrePersist
     public void prePersist() {
-        this.createdAt = LocalDate.now();
+        this.createAt = LocalDate.now();
     }
 
     public Long getId() {
@@ -83,12 +83,12 @@ public class Factura {
         this.cliente = cliente;
     }
 
-    public LocalDate getCreatedAt() {
-        return createdAt;
+    public LocalDate getCreateAt() {
+        return createAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
+    public void setCreateAt(LocalDate createAt) {
+        this.createAt = createAt;
     }
 
     public Long calcularTotal() {
